@@ -1,5 +1,10 @@
 {
+  "version": 2,
   "buildCommand": "npm run build --workspace=@video-portfolio/client",
   "outputDirectory": "apps/client/dist",
-  "framework": "vite"
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
