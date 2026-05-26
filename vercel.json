@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build --workspace=@video-portfolio/client",
+  "outputDirectory": "apps/client/dist",
+  "framework": "vite"
+}

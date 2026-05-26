@@ -1,0 +1,13 @@
+{
+  "name": "@video-portfolio/ui-kit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "framer-motion": "^10.0.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "build": "echo 'No build'"
+  }
+}

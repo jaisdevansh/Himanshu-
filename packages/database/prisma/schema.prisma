@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String
+  role          Role      @default(VIEWER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  projects      Project[]
+  activityLogs  ActivityLog[]
+  aiHistories   AIHistory[]
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String?
+  status      ProjectStatus @default(DRAFT)
+  publishedAt DateTime?
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  
+  media       Media[]
+  tags        ProjectTag[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([status, publishedAt])
+}
+
+enum ProjectStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Media {
+  id           String   @id @default(cuid())
+  url          String
+  publicId     String   @unique
+  resourceType String   
+  projectId    String?
+  project      Project? @relation(fields: [projectId], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+model Tag {
+  id        String       @id @default(cuid())
+  name      String       @unique
+  projects  ProjectTag[]
+}
+
+model ProjectTag {
+  projectId String
+  tagId     String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, tagId])
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  content     String
+  rating      Int      @default(5)
+  isApproved  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  status    InquiryStatus @default(PENDING)
+  createdAt DateTime @default(now())
+}
+
+enum InquiryStatus {
+  PENDING
+  REVIEWED
+  RESPONDED
+  ARCHIVED
+}
+
+model SiteSettings {
+  id          String   @id @default(cuid())
+  title       String   @default("Video Editor Portfolio")
+  description String?
+  contactEmail String?
+  themeConfig Json?
+  seoConfig   Json?
+  updatedAt   DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  details   Json?
+  createdAt DateTime @default(now())
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  eventType String   
+  path      String
+  userAgent String?
+  country   String?
+  createdAt DateTime @default(now())
+  
+  @@index([eventType, createdAt])
+}
+
+model AIHistory {
+  id          String   @id @default(cuid())
+  prompt      String
+  response    String
+  tool        String   
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}
