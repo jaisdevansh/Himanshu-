@@ -2,7 +2,7 @@
   "version": 2,
   "installCommand": "npm install",
   "buildCommand": "npm run build --workspace=@video-portfolio/client",
-  "outputDirectory": "apps/client/dist",
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
