@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: video-portfolio-backend
+    env: node
+    plan: free
+    buildCommand: npm run build --workspace=@video-portfolio/server
+    startCommand: npm run start --workspace=@video-portfolio/server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: DATABASE_URL
+        sync: false
+        placeholder: "Postgres Neon connection URL"
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+        placeholder: "Cloudinary Cloud Name"
+      - key: CLOUDINARY_API_KEY
+        sync: false
+        placeholder: "Cloudinary API Key"
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+        placeholder: "Cloudinary API Secret"
+      - key: JWT_SECRET
+        sync: false
+        placeholder: "Custom JWT Secret for Authentication"
