@@ -513,31 +513,120 @@ export const Home = () => {
       </section>
 
       {/* Process Section */}
-      <section className="w-full py-28 px-8 border-t border-white/5 bg-dark">
+      <section className="w-full py-28 px-8 border-t border-white/5 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #07060400 0%, #0d0a06 40%, #07060400 100%)' }}>
+        {/* Background radial glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,151,58,0.04) 0%, transparent 70%)' }} />
+
         <div className="max-w-[1100px] mx-auto relative z-10">
           <motion.p {...fadeUp} className="text-[0.65rem] tracking-[0.4em] uppercase text-gold mb-3 font-medium">Process</motion.p>
-          <h2 className="font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.1] mb-6">How we bring ideas to life.</h2>
-          <div className="w-[50px] h-[1px] bg-gold mb-16" />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative mt-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-20">
+            <motion.h2 {...fadeUp} className="font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.05]">
+              How we bring<br /><span className="text-gold italic font-normal">ideas to life.</span>
+            </motion.h2>
+            <motion.p {...fadeUp} className="text-[0.85rem] text-cream/30 max-w-[260px] leading-relaxed font-light md:text-right">
+              Four intentional steps. Zero guesswork. Every project runs on the same proven rhythm.
+            </motion.p>
+          </div>
+
+          {/* Timeline connector (desktop) */}
+          <div className="hidden lg:block absolute top-[calc(50%+30px)] left-[calc(50%-540px+56px)] right-[calc(50%-540px+56px)] h-[1px] bg-white/[0.04] z-0 pointer-events-none" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.03] border border-white/[0.04] rounded-xl overflow-hidden relative z-10">
             {[
-              { num: '01', icon: '💬', title: 'Consult & Brief', desc: 'Reach out and share your vision, target audience, and reference styles.' },
-              { num: '02', icon: '📤', title: 'Upload Footage', desc: 'Drop your raw files into our secure drive. We review everything immediately.' },
-              { num: '03', icon: '✂️', title: 'The Magic', desc: 'We meticulously cut, grade, and design your video to perfection.' },
-              { num: '04', icon: '✨', title: 'Review & Post', desc: 'You get a link to review. Once approved, the final high-res file is yours.' }
+              {
+                num: '01',
+                label: 'Consult & Brief',
+                desc: 'Share your vision, target audience, and references. We align on goals before a single frame is touched.',
+                tag: 'Discovery',
+                svg: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                )
+              },
+              {
+                num: '02',
+                label: 'Upload Footage',
+                desc: 'Drop your raw files into our secure shared drive. We review the full footage and flag what we need.',
+                tag: 'Ingestion',
+                svg: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 16 12 12 8 16" /><line x1="12" y1="12" x2="12" y2="21" />
+                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+                  </svg>
+                )
+              },
+              {
+                num: '03',
+                label: 'The Magic',
+                desc: 'We cut, color grade, design motion, and mix audio — crafting the final piece frame by frame.',
+                tag: 'Production',
+                svg: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                    <path d="M5 3v4M19 17v4M3 5h4M17 19h4" />
+                  </svg>
+                )
+              },
+              {
+                num: '04',
+                label: 'Review & Post',
+                desc: 'Preview the watermarked export. Once you approve, the full high-res file is delivered instantly.',
+                tag: 'Delivery',
+                svg: (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                )
+              }
             ].map((step, i) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 25 }}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                key={i} 
-                className="p-8 border border-white/5 rounded bg-white/[0.01] hover:border-gold/25 transition-colors duration-300 relative group"
+                transition={{ duration: 0.65, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                key={i}
+                className="group relative bg-[#080604] flex flex-col gap-0 cursor-default overflow-hidden transition-all duration-700 hover:bg-[#110d06]"
               >
-                <div className="font-serif text-5xl font-black text-gold/10 leading-none mb-4 group-hover:text-gold/25 transition-colors duration-300">{step.num}</div>
-                <span className="text-2xl block mb-4">{step.icon}</span>
-                <h3 className="font-serif text-[1.15rem] mb-2 text-cream font-bold">{step.title}</h3>
-                <p className="text-[0.85rem] text-cream/45 leading-[1.65] font-light">{step.desc}</p>
+                {/* Top sweep line */}
+                <div className="absolute top-0 left-0 w-0 h-[1px] bg-gradient-to-r from-gold to-gold/10 group-hover:w-full transition-all duration-700 ease-out" />
+
+                {/* Step number tag at top */}
+                <div className="flex items-center justify-between px-7 pt-7 pb-0">
+                  <span className="text-[0.55rem] tracking-[0.35em] uppercase font-mono text-gold/30 group-hover:text-gold/70 transition-colors duration-500">{step.tag}</span>
+                  <span className="font-mono text-[0.6rem] tracking-[0.15em] text-gold/15 group-hover:text-gold/50 transition-colors duration-500">{step.num}</span>
+                </div>
+
+                {/* Gold ring icon */}
+                <div className="px-7 pt-7 pb-0">
+                  <div className="relative w-12 h-12 flex items-center justify-center">
+                    {/* Outer ring */}
+                    <div className="absolute inset-0 rounded-full border border-gold/15 group-hover:border-gold/50 transition-all duration-500" />
+                    {/* Inner fill */}
+                    <div className="absolute inset-[3px] rounded-full bg-gold/0 group-hover:bg-gold/8 transition-all duration-500" />
+                    {/* Icon */}
+                    <div className="text-gold/40 group-hover:text-gold transition-colors duration-500 relative z-10">
+                      {step.svg}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="px-7 pt-6 pb-6 flex flex-col gap-3 flex-1">
+                  <h3 className="font-serif text-[1.1rem] font-bold text-cream/80 group-hover:text-cream transition-colors duration-300 leading-snug">{step.label}</h3>
+                  <p className="text-[0.81rem] text-cream/30 leading-[1.8] font-light group-hover:text-cream/55 transition-colors duration-500">{step.desc}</p>
+                </div>
+
+                {/* Bottom progress bar */}
+                <div className="h-[2px] w-full bg-white/[0.03] relative overflow-hidden">
+                  <div
+                    className="absolute top-0 left-0 h-full bg-gold/0 group-hover:bg-gold/60 transition-all duration-700"
+                    style={{ width: `${25 * (i + 1)}%` }}
+                  />
+                </div>
+
+                {/* Corner glow */}
+                <div className="absolute bottom-4 right-4 w-20 h-20 rounded-full bg-gold/0 group-hover:bg-gold/[0.05] blur-[30px] transition-all duration-700 pointer-events-none" />
               </motion.div>
             ))}
           </div>
