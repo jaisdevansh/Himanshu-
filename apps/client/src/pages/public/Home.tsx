@@ -241,36 +241,110 @@ export const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="w-full py-28 px-8 relative border-t border-white/5 bg-charcoal/[0.15]">
+      <section className="w-full py-28 px-8 relative border-t border-white/5 overflow-hidden" style={{ background: 'linear-gradient(180deg, #0a0806 0%, #070605 100%)' }}>
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,151,58,0.06) 0%, transparent 70%)' }} />
+
         <div className="max-w-[1100px] mx-auto relative z-10">
           <motion.p {...fadeUp} className="text-[0.65rem] tracking-[0.4em] uppercase text-gold mb-3 font-medium">What We Offer</motion.p>
-          <motion.h2 {...fadeUp} className="font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.1] mb-6">Everything. Done to perfection.</motion.h2>
-          <motion.div {...fadeUp} className="w-[50px] h-[1px] bg-gold mb-16" />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <motion.h2 {...fadeUp} className="font-serif text-[clamp(2rem,4.5vw,3.2rem)] font-bold leading-[1.05]">
+              Everything.<br /><span className="text-gold italic font-normal">Done to perfection.</span>
+            </motion.h2>
+            <motion.p {...fadeUp} className="text-[0.88rem] text-cream/35 max-w-[300px] leading-relaxed font-light md:text-right">
+              Four disciplines, one standard — cinematic excellence from the first frame to the final export.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] rounded-lg overflow-hidden border border-white/[0.04]">
             {[
-              { icon: '🎬', title: 'Cinematic Editing', desc: 'Premium pacing and structural flow. Raw clips forged into immersive narratives.' },
-              { icon: '🎨', title: 'Color Grading', desc: 'Deep color correction and cinematic grading to match your visual storytelling goals.' },
-              { icon: '🔊', title: 'Sound Design', desc: 'Bespoke foley layering, dynamic audio leveling, and professional sound mixing.' },
-              { icon: '⚡', title: 'Motion Graphics', desc: 'Modern minimalist typography, lower-thirds, and visual asset overlays.' }
+              {
+                num: '01',
+                svg: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="2" /><path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5" />
+                  </svg>
+                ),
+                title: 'Cinematic Editing',
+                desc: 'Premium pacing and structural flow. Raw clips forged into immersive narratives that hold attention frame to frame.',
+                accent: 'Cut. Sequence. Breathe.'
+              },
+              {
+                num: '02',
+                svg: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                  </svg>
+                ),
+                title: 'Color Grading',
+                desc: 'Deep color correction and signature cinematic grading — transforming flat footage into emotionally charged visuals.',
+                accent: 'Grade. Feel. Resonate.'
+              },
+              {
+                num: '03',
+                svg: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
+                  </svg>
+                ),
+                title: 'Sound Design',
+                desc: 'Bespoke foley layering, dynamic audio leveling, and spatial sound mixing that makes every scene feel alive.',
+                accent: 'Listen. Layer. Immerse.'
+              },
+              {
+                num: '04',
+                svg: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                ),
+                title: 'Motion Graphics',
+                desc: 'Modern minimalist typography, custom lower-thirds, and visual asset overlays engineered for maximum retention.',
+                accent: 'Move. Animate. Impact.'
+              }
             ].map((s, i) => (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                key={i} 
-                className="group bg-white/[0.01] border border-white/5 p-10 relative overflow-hidden transition-all duration-500 rounded hover:border-gold/30 hover:bg-[#201A12]/20 hover:shadow-[0_10px_30px_rgba(32,26,18,0.3)]"
+                key={i}
+                className="group relative bg-[#080604] p-8 flex flex-col gap-6 cursor-default overflow-hidden transition-all duration-700 hover:bg-[#120e07]"
               >
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold/40 transition-all duration-500" />
-                <span className="text-3xl block mb-6 transition-transform duration-300 group-hover:scale-110">{s.icon}</span>
-                <h3 className="font-serif text-[1.25rem] font-bold mb-3 text-cream group-hover:text-gold transition-colors duration-300">{s.title}</h3>
-                <p className="text-[0.88rem] text-cream/45 leading-[1.65] font-light">{s.desc}</p>
+                {/* Top gold shimmer line */}
+                <div className="absolute top-0 left-0 w-0 h-[1px] bg-gradient-to-r from-gold/80 to-gold/10 group-hover:w-full transition-all duration-700 ease-out" />
+
+                {/* Corner number */}
+                <div className="absolute top-5 right-6 font-mono text-[0.6rem] text-gold/20 group-hover:text-gold/60 transition-colors duration-500 tracking-[0.2em]">{s.num}</div>
+
+                {/* Icon container */}
+                <div className="relative w-14 h-14 flex items-center justify-center">
+                  <div className="absolute inset-0 border border-gold/10 group-hover:border-gold/35 transition-all duration-500 rounded" />
+                  <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/5 transition-all duration-500 rounded" />
+                  <div className="text-gold/50 group-hover:text-gold transition-colors duration-500">
+                    {s.svg}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-3 flex-1">
+                  <h3 className="font-serif text-[1.15rem] font-bold text-cream/85 group-hover:text-cream transition-colors duration-300 leading-snug">{s.title}</h3>
+                  <p className="text-[0.82rem] text-cream/35 leading-[1.75] font-light group-hover:text-cream/55 transition-colors duration-500">{s.desc}</p>
+                </div>
+
+                {/* Bottom accent tagline */}
+                <div className="border-t border-white/[0.04] group-hover:border-gold/15 transition-colors duration-500 pt-4">
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-gold/0 group-hover:text-gold/70 transition-all duration-500 font-mono">{s.accent}</p>
+                </div>
+
+                {/* Ambient glow on hover */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-gold/0 group-hover:bg-gold/[0.04] blur-[40px] transition-all duration-700 pointer-events-none" />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* Top 5 Works */}
       <section className="w-full py-28 px-8 border-t border-white/5 bg-charcoal/[0.05]">
