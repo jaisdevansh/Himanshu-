@@ -4,6 +4,10 @@ import App from './App.tsx'
 import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
+import axios from 'axios'
+
+// Set dynamic baseURL: empty in dev (Vite proxy handles it), Render URL in production
+axios.defaults.baseURL = (import.meta as any).env.VITE_API_URL || ((import.meta as any).env.PROD ? 'https://himanshu-atw6.onrender.com' : '');
 
 const queryClient = new QueryClient()
 
