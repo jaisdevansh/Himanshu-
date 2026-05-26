@@ -1,7 +1,7 @@
 {
   "version": 2,
   "installCommand": "npm install",
-  "buildCommand": "npm run build --workspace=@video-portfolio/client",
+  "buildCommand": "npm run build --workspace=@video-portfolio/client && cp -r apps/client/dist ./dist",
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
