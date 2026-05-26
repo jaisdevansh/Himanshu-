@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useProjectStore, Project } from '@/store/projectStore';
 import { useSettingsStore } from '@/store/settingsStore';
 import { getFile } from '@/utils/indexedDB';
+import heroBg from '@/assets/hero-bg.png';
 
 // Decorative corner brackets resembling a camera viewfinder
 const ViewfinderBrackets = () => (
@@ -111,11 +112,11 @@ export const Home = () => {
         background: '#070605'
       }}>
         
-        {/* Layer 0: Cinematic Backdrop Image (Sharp professional camera rig) */}
+        {/* Layer 0: Cinematic Backdrop Image (Vintage camera) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.35]">
           <img 
-            src="https://images.unsplash.com/photo-1579165466541-74e2b4f8a1a3?auto=format&fit=crop&q=80&w=1600" 
-            alt="Cinema Camera Rig" 
+            src={heroBg} 
+            alt="Vintage Camera" 
             className="w-full h-full object-cover filter grayscale contrast-125 brightness-[0.4]"
           />
         </div>
