@@ -119,12 +119,12 @@ export const Dashboard = () => {
           <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-gold/30 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-gold/30 pointer-events-none" />
 
-          <div className="flex justify-between items-center border-b border-white/5 pb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 border-b border-white/5 pb-4">
             <div>
               <h3 className="text-[0.95rem] font-serif font-bold text-white">Showcase Growth & Plays</h3>
               <p className="text-xs text-white/40 font-light">Metrics indicating weekly user engagement activity.</p>
             </div>
-            <span className="text-[0.65rem] font-mono tracking-widest text-gold uppercase bg-gold/10 px-2 py-0.5 rounded border border-gold/15">
+            <span className="text-[0.65rem] font-mono tracking-widest text-gold uppercase bg-gold/10 px-2 py-0.5 rounded border border-gold/15 whitespace-nowrap">
               Live Updates
             </span>
           </div>
@@ -171,7 +171,7 @@ export const Dashboard = () => {
               ))}
             </svg>
           </div>
-          <div className="flex justify-between text-[0.62rem] font-mono tracking-widest text-white/30 uppercase">
+          <div className="flex justify-between text-[0.55rem] sm:text-[0.62rem] font-mono tracking-widest text-white/30 uppercase px-1">
             {dayNames.map((name, i) => (
               <span key={i}>{name}</span>
             ))}

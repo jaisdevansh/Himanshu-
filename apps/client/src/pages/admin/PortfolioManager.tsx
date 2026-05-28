@@ -244,8 +244,8 @@ export const PortfolioManager = () => {
       </div>
       
       {/* Table Container */}
-      <div className="bg-surface/20 rounded-lg border border-white/5 overflow-hidden backdrop-blur-sm shadow-xl">
-        <table className="w-full text-left text-sm">
+      <div className="bg-surface/20 rounded-lg border border-white/5 overflow-x-auto backdrop-blur-sm shadow-xl">
+        <table className="w-full text-left text-sm min-w-[800px]">
           <thead className="bg-white/5 text-white/50 border-b border-white/5 font-mono text-[0.7rem] uppercase tracking-wider">
             <tr>
               <th className="px-6 py-4 font-semibold">Thumbnail & Project</th>
