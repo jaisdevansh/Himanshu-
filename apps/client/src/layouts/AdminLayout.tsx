@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Video, Image, Settings, Users, LogOut, Menu, X } from 'lucide-react';
 import { useSettingsStore } from '@/store/settingsStore';
+import { useAuthStore } from '../components/ProtectedRoute';
 
 export const AdminLayout = () => {
   const location = useLocation();
@@ -72,7 +73,10 @@ export const AdminLayout = () => {
         </nav>
         
         <div className="p-4 border-t border-gold/10">
-          <button className="flex items-center space-x-3 px-4 py-3 w-full text-left text-white/40 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors">
+          <button 
+            onClick={() => useAuthStore.getState().logout()}
+            className="flex items-center space-x-3 px-4 py-3 w-full text-left text-white/40 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors"
+          >
             <LogOut size={18} />
             <span className="font-medium text-xs tracking-wider uppercase font-mono">Logout</span>
           </button>

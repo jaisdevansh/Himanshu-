@@ -12,6 +12,7 @@ const Services = React.lazy(() => import('./pages/public/Services').then(m => ({
 const About = React.lazy(() => import('./pages/public/About').then(m => ({ default: m.About })));
 const Contact = React.lazy(() => import('./pages/public/Contact').then(m => ({ default: m.Contact })));
 const Dashboard = React.lazy(() => import('./pages/admin/Dashboard').then(m => ({ default: m.Dashboard })));
+const Login = React.lazy(() => import('./pages/admin/Login').then(m => ({ default: m.Login })));
 const PortfolioManager = React.lazy(() => import('./pages/admin/PortfolioManager').then(m => ({ default: m.PortfolioManager })));
 const CRM = React.lazy(() => import('./pages/admin/CRM').then(m => ({ default: m.CRM })));
 const MediaManager = React.lazy(() => import('./pages/admin/MediaManager').then(m => ({ default: m.MediaManager })));
@@ -61,6 +62,7 @@ function App() {
         </Route>
         
         {/* Admin Routes */}
+        <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="portfolio" element={<PortfolioManager />} />
